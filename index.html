@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Fonts Library</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans:opsz,wght@8..144,400;8..144,500;8..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="page-header container">
+      <h1>Google Fonts Library</h1>
+      <p>Browse popular Google Fonts<br />Click once to copy the @import link.</p>
+    </header>
+
+    <div class="search-wrap">
+      <div class="container">
+        <label class="search-bar" for="fontSearch" aria-label="Search fonts">
+          <span class="material-icons" aria-hidden="true">search</span>
+          <input
+            id="fontSearch"
+            type="text"
+            placeholder="Search fonts..."
+            autocomplete="off"
+          />
+        </label>
+      </div>
+    </div>
+
+    <main class="container">
+      <section id="fontGrid" class="font-grid" aria-live="polite"></section>
+    </main>
+
+    <div id="snackbar" class="snackbar" role="status" aria-live="polite">
+      <span class="material-icons" aria-hidden="true">check</span>
+      <span>Copied!</span>
+    </div>
+
+    <template id="fontCardTemplate">
+      <article class="font-card">
+        <h2 class="font-name"></h2>
+
+        <div class="font-preview" aria-label="Font preview">
+          <p>The quick brown fox jumps over the lazy dog</p>
+          <p>0123456789</p>
+          <p>Aa Bb Cc</p>
+        </div>
+
+        <p class="font-url"></p>
+
+        <button class="copy-btn" type="button">
+          <span class="material-icons" aria-hidden="true">content_copy</span>
+          <span>Copy @import</span>
+        </button>
+      </article>
+    </template>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
