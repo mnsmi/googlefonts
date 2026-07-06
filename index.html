@@ -19,6 +19,17 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div id="appLoader" class="app-loader" aria-live="polite" aria-busy="true">
+    <video
+      id="loaderVideo"
+      class="loader-video"
+      src="loader.mp4"
+      autoplay
+      muted
+      playsinline
+      preload="auto"
+    ></video>
+  </div>
     <header class="page-header container">
       <h1>Google Fonts Library</h1>
       <p>Browse popular Google Fonts<br />Click once to copy the @import link.</p>
