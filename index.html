@@ -20,18 +20,48 @@
       rel="icon"
       />
     <link rel="stylesheet" href="styles.css" />
+    <script>
+  window.addEventListener("load", function () {
+    setTimeout(function () {
+      const loader = document.getElementById("loader");
+      loader.style.opacity = 0;
+      setTimeout(() => {
+        loader.style.display = "none";
+        document.body.classList.remove("hide-content");
+      }, 500);
+    }, 1500); // Minimale tijd
+  });
+</script>
+    <style>
+        #loader {
+      position: fixed;
+      inset: 0;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+  
+    #loader img {
+      width: 100px;
+      height: auto;
+    }
+      body:not(.hide-content) .gws-logo,
+body:not(.hide-content) .section h1,
+body:not(.hide-content) .section a {
+  opacity: 1;
+  transform: translateY(0);
+}
+    .hide-content > *:not(#loader) {
+      display: none;
+    }
+    </style>
   </head>
-  <body>
-    <div id="appLoader" class="app-loader" aria-live="polite" aria-busy="true">
-    <video
-      id="loaderVideo"
-      class="loader-video"
-      src="loader.mp4"
-      autoplay
-      muted
-      playsinline
-      preload="auto"
-    ></video>
+  <body class="hide-content">
+  <div id="loader">
+    <img src="loader.mp4" alt="Laden..." />
   </div>
     <header class="page-header container">
       <h1>Google Fonts Library</h1>
