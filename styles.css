@@ -186,6 +186,33 @@ body {
   transform: translate(-50%, 0);
 }
 
+/* Fullscreen loader */
+.app-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #f8f9fa;
+  display: grid;
+  place-items: center;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 420ms ease, visibility 420ms ease;
+}
+
+.app-loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-video {
+  width: min(520px, 82vw);
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(32, 33, 36, 0.18);
+  object-fit: cover;
+}
+
 @keyframes fadeUp {
   from {
     opacity: 0;
