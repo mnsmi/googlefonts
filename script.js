@@ -153,3 +153,36 @@ searchInput.addEventListener("input", (e) => {
 });
 
 render(fonts);
+
+function hideLoader() {
+  const loader = document.getElementById("appLoader");
+  if (!loader) return;
+  loader.classList.add("is-hidden");
+  loader.setAttribute("aria-busy", "false");
+  setTimeout(() => loader.remove(), 500);
+}
+
+function initLoader() {
+  const video = document.getElementById("loaderVideo");
+  const loader = document.getElementById("appLoader");
+  if (!video || !loader) return;
+
+  // Zorg dat afspelen zo betrouwbaar mogelijk start
+  const playPromise = video.play();
+  if (playPromise && typeof playPromise.then === "function") {
+    playPromise.catch(() => {
+      // fallback: verberg na korte tijd als autoplay wordt geblokkeerd
+      setTimeout(hideLoader, 1200);
+    });
+  }
+
+  // Verberg loader als video klaar is
+  video.addEventListener("ended", hideLoader, { once: true });
+
+  // Veiligheidsnet: nooit blijven hangen
+  setTimeout(() => {
+    if (document.body.contains(loader)) hideLoader();
+  }, 5000);
+}
+
+window.addEventListener("load", initLoader);
