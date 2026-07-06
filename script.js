@@ -99,6 +99,7 @@ function createCard(fontName, index) {
   const copyBtn = node.querySelector(".copy-btn");
 
   fontNameEl.textContent = fontName;
+  fontNameEl.style.fontFamily = `'${fontName}', sans-serif`;
   previewEl.style.fontFamily = `'${fontName}', sans-serif`;
   fontUrlEl.textContent = makeFontUrl(fontName);
 
@@ -114,8 +115,25 @@ function createCard(fontName, index) {
   return node;
 }
 
-function render(list) {
+function createNoResults(term) {
+  const empty = document.createElement("article");
+  empty.className = "no-results";
+  empty.innerHTML = `
+    <span class="material-icons" aria-hidden="true">search_off</span>
+    <h3>No results</h3>
+    <p>No fonts found for <strong>"${term}"</strong>. Try a different search.</p>
+  `;
+  return empty;
+}
+
+function render(list, term = "") {
   fontGrid.innerHTML = "";
+
+  if (!list.length) {
+    fontGrid.appendChild(createNoResults(term));
+    return;
+  }
+
   const fragment = document.createDocumentFragment();
   list.forEach((fontName, index) => {
     fragment.appendChild(createCard(fontName, index));
@@ -130,7 +148,8 @@ function filterFonts(value) {
 }
 
 searchInput.addEventListener("input", (e) => {
-  render(filterFonts(e.target.value));
+  const raw = e.target.value;
+  render(filterFonts(raw), raw.trim());
 });
 
 render(fonts);
